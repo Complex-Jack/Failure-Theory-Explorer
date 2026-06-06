@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Compare static failure theory yield surfaces in principal-stress space." />
+    <title>Failure Theory Explorer</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <header class="hero">
+        <div>
+          <p class="eyebrow">MECHANICAL DESIGN · PRINCIPAL-STRESS SPACE</p>
+          <h1>Failure Theory <span>Explorer</span></h1>
+        </div>
+        <p class="hero-copy">Compare failure criteria, plot a loading condition, and see where design becomes failure.</p>
+      </header>
+
+      <section class="app-grid">
+        <aside class="sidebar">
+          <section class="panel inputs">
+            <div class="section-title"><b>01</b><div><span>Loading condition</span><h2>Plane stress exercise</h2></div></div>
+            <div class="exercise-bar">
+              <button id="newCase">Generate new case</button>
+            </div>
+            <div class="field-row three">
+              <label>σx <input id="sigmaX" type="number" value="90" readonly /></label>
+              <label>σy <input id="sigmaY" type="number" value="-30" readonly /></label>
+              <label>τxy <input id="tauXY" type="number" value="45" readonly /></label>
+            </div>
+            <p class="hint">Given in MPa. Calculate the principal stresses, then determine the factor of safety for each selected theory.</p>
+          </section>
+
+          <section class="panel material">
+            <div class="section-title"><b>02</b><div><span>Sample material</span><h2>Strength data</h2></div></div>
+            <div class="material-name">
+              <div><span>Material</span><strong>Sample engineering alloy</strong></div>
+              <span class="tag">editable</span>
+            </div>
+            <div class="strength-grid">
+              <label><span>Tensile yield <b>Syt</b></span><input id="syt" type="number" value="250" min="1" /></label>
+              <label><span>Compressive yield <b>Syc</b></span><input id="syc" type="number" value="300" min="1" /></label>
+              <label><span>Ultimate tensile <b>Sut</b></span><input id="sut" type="number" value="400" min="1" /></label>
+              <label><span>Ultimate compressive <b>Suc</b></span><input id="suc" type="number" value="650" min="1" /></label>
+            </div>
+          </section>
+
+          <section class="panel selector">
+            <div class="section-title"><b>03</b><div><span>Display controls</span><h2>Failure theories</h2></div></div>
+            <div class="family-toggle" role="group" aria-label="Theory families">
+              <button class="active" data-family="ductile">Ductile</button>
+              <button data-family="brittle">Brittle</button>
+              <button data-family="both">Both</button>
+            </div>
+            <div id="theoryToggles" class="theory-toggles"></div>
+          </section>
+        </aside>
+
+        <section class="main-column">
+          <section class="panel plot-panel">
+            <div class="plot-header">
+              <div class="section-title"><b>04</b><div><span>Yield surface preview</span><h2>Failure envelope</h2></div></div>
+              <div class="plot-key"><i></i> loading condition</div>
+            </div>
+            <svg id="yieldPlot" viewBox="0 0 760 650" role="img" aria-label="Failure theory yield surfaces"></svg>
+            <div id="plotCaption" class="plot-caption" hidden>
+              <span><b>Inside envelope</b> predicted safe</span>
+              <span><b>On / outside envelope</b> predicted failure</span>
+            </div>
+          </section>
+
+          <section class="panel results">
+            <div class="results-header">
+              <div class="section-title"><b>05</b><div><span>Student response</span><h2>Factor of safety</h2></div></div>
+              <div class="attempt-box"><span id="attemptStatus">Attempt 1 of 3</span><button id="checkAnswers" class="check-button">Check answers</button></div>
+            </div>
+            <div id="resultCards" class="result-grid"></div>
+            <p class="footnote">Enter each factor of safety to two decimal places. You have three attempts; plot coordinates appear when the third attempt opens, and solutions appear after the final check.</p>
+          </section>
+        </section>
+      </section>
+    </main>
+    <script src="app.js"></script>
+  </body>
+</html>
