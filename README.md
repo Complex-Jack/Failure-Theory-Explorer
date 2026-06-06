@@ -11,7 +11,7 @@ Every push to `main` deploys the site using
 The published URL will use this format:
 
 ```text
-https://GITHUB-USERNAME.github.io/static-failure-theory-widget/
+https://GITHUB-USERNAME.github.io/Failure-Theory-Explorer/
 ```
 
 ## Add To Canvas
